@@ -17,7 +17,7 @@ app.use("/user", require("./users/userRouter"));
 
 app.get("/", (req, res) => {
   res.json({
-    message: "Cors Origin Added",
+    message: "Cors Origin Added for frontend",
   });
 });
 
