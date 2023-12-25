@@ -8,7 +8,7 @@ const port = process.env.SERVER_PORT;
 
 app.use(
   cors({
-    origin: ["https://shareit-backend.vercel.app"],
+    origin: ["https://shareit-backend.vercel.app", "http://localhost:5173"],
     credentials: true,
   })
 );
