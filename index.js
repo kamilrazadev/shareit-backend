@@ -11,7 +11,7 @@ app.use(cors());
 app.get("/", (req, res) => {
   res.json({
     name: "Kamil Raza",
-    role: "guest",
+    role: "user",
     email: "kamil@gmail.com",
   });
 });
