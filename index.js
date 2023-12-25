@@ -10,6 +10,12 @@ app.use(cors());
 app.use(express.json());
 app.use("/user", require("./users/userRouter"));
 
+app.get("/", (req, res) => {
+  res.json({
+    message: "Done",
+  });
+});
+
 mongoose
   .connect(process.env.DB_URL_STRING)
   .then(() => console.log("DB Connected"))
