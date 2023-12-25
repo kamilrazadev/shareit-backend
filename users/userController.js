@@ -1,5 +1,11 @@
 const userModel = require("./userModel");
 
+const checkApi = (req, res) => {
+  res.json({
+    message: "Cors Origin Added",
+  });
+};
+
 const signUp = async (req, res) => {
   const { username, email } = req.body;
 
@@ -24,4 +30,4 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-module.exports = { signUp, getAllUsers };
+module.exports = { signUp, getAllUsers, checkApi };

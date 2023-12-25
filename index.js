@@ -8,7 +8,7 @@ const port = process.env.SERVER_PORT;
 
 app.use(
   cors({
-    origin: ["https://shareit-backend.vercel.app", "http://localhost:3100"],
+    origin: ["https://shareit-backend.vercel.app"],
     credentials: true,
   })
 );
@@ -17,7 +17,7 @@ app.use("/user", require("./users/userRouter"));
 
 app.get("/", (req, res) => {
   res.json({
-    message: "Done",
+    message: "Cors Origin Added",
   });
 });
 
