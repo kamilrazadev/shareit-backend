@@ -6,18 +6,13 @@ require("dotenv").config();
 
 const port = process.env.SERVER_PORT;
 
-app.use(
-  cors({
-    origin: ["https://shareit-backend.vercel.app", "http://localhost:5173"],
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(express.json());
 app.use("/user", require("./users/userRouter"));
 
 app.get("/", (req, res) => {
   res.json({
-    message: "Cors Origin Added for frontend",
+    message: "Cors removed",
   });
 });
 
