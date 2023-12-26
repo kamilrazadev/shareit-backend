@@ -1,15 +1,37 @@
 const userModel = require("./userModel");
-
-const checkApi = (req, res) => {
-  res.json({
-    message: "Cors Origin Added",
-  });
-};
+const { hash, compare } = require("bcryptjs");
 
 const signUp = async (req, res) => {
-  const { username, email } = req.body;
+  const { username, email, password } = req.body;
+
+  // Checking if required fields are present----
+  if (!username || !email || !password) {
+    return res.status(400).json({
+      message: "username, email and password are required fields",
+    });
+  }
 
   try {
+    // Checking if the email/user already exists-----
+    const isUserAlreadyExists = await userModel.findOne({ email: email });
+    if (isUserAlreadyExists) {
+      return res.status(409).json({
+        message: "This Email Already Registered",
+      });
+    }
+
+    // Creating the Account------
+
+    // Hashing the password to make it secure
+    const hashedPass = await hash(password, 12);
+
+    // User payload to create on database
+    const payload = {
+      email: email,
+      username: username,
+      password: hashedPass,
+    };
+
     userModel.create({ username, email });
     res.status(201).json({
       message: "Account Created Successfully",
@@ -30,4 +52,4 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-module.exports = { signUp, getAllUsers, checkApi };
+module.exports = { signUp, getAllUsers };
